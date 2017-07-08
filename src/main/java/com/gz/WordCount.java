@@ -15,12 +15,6 @@ import java.io.IOException;
  */
 public class WordCount {
     public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
-        //Configuration configuration = new Configuration();
-        if(args.length!=2){
-            System.err.println("Usage:wordcount <input><output>");
-            System.exit(2);
-        }
-        //Job job = new Job(configuration,"word count");
         Job job = new Job();
         job.setJobName("word count");
 
@@ -32,9 +26,9 @@ public class WordCount {
 
         //InputPath和OutputPath路径可以任意指定，并且可以同时处理多个文件
         //input中的路径参数需要精确到文件名,否则报错（Exception in thread "main" java.lang.RuntimeException: Error while running command to get file permissions : java.io.IOException: (null) entry in command string: null ls -F E:\Idea-projects\demo\hadoop\hadoop-word-count\input\22）
-        FileInputFormat.addInputPath(job, new Path("E:\\Idea-projects\\demo\\hadoop\\hadoop-word-count\\input\\22"));
+        FileInputFormat.addInputPath(job, new Path("E:\\Idea-projects\\demo\\hadoop\\hadoop-filesystem\\input\\22"));
         //FileInputFormat.addInputPath(job, new Path("E:\\Idea-projects\\demo\\hadoop\\testData\\input\\22"));
-        FileOutputFormat.setOutputPath(job, new Path("E:\\Idea-projects\\demo\\hadoop\\hadoop-word-count\\output"));
+        FileOutputFormat.setOutputPath(job, new Path("E:\\Idea-projects\\demo\\hadoop\\hadoop-filesystem\\output"));
         //FileOutputFormat.setOutputPath(job, new Path(args[1]));//args[1]默认为上述路径
         System.exit(job.waitForCompletion(true) ? 0 : 1);
     }
